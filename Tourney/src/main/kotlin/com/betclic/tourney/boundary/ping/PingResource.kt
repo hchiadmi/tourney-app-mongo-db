@@ -1,4 +1,4 @@
-package com.betclic.tourney.ping
+package com.betclic.tourney.boundary.ping
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
