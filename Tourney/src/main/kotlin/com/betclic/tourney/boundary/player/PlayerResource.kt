@@ -58,4 +58,11 @@ class PlayerResource(
                 PlayerResponse.fromModel(player)
             )
     }
+
+    @DeleteMapping
+    fun deleteAllPlayers(): ResponseEntity<String> {
+        playerService.deleteAllPlayers()
+
+        return ResponseEntity.ok("Deleted all players")
+    }
 }

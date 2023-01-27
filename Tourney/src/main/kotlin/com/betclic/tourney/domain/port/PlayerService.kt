@@ -9,4 +9,6 @@ interface PlayerService {
     fun findById(id: String): Player
 
     fun findByName(name: String): Player
+
+    fun deleteAllPlayers()
 }

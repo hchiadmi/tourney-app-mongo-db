@@ -27,4 +27,15 @@ object HttpHelper {
             T::class.java,
         )
     }
+
+    inline fun <reified T> sendDeleteRequest(url: String): ResponseEntity<T>? {
+        val headers = HttpHeaders()
+
+        return TestRestTemplate().exchange(
+            url,
+            HttpMethod.DELETE,
+            HttpEntity<String>(headers),
+            T::class.java,
+        )
+    }
 }

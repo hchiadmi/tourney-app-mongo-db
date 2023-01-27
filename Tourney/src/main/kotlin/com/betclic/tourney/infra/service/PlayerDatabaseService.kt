@@ -38,4 +38,8 @@ class PlayerDatabaseService(
         return playerRepository.findByName(name)
             ?: throw NotFoundException("Player with name [$name] is unknown")
     }
+
+    override fun deleteAllPlayers() {
+        playerRepository.deleteAll()
+    }
 }
