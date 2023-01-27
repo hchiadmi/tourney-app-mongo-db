@@ -3,6 +3,7 @@ package com.betclic.tourney.boundary.player
 import com.betclic.tourney.boundary.request.PlayerRequest
 import com.betclic.tourney.boundary.response.PlayerResponse
 import com.betclic.tourney.domain.exception.InvalidRequestArgumentsException
+import com.betclic.tourney.domain.exception.NotFoundException
 import com.betclic.tourney.domain.port.PlayerService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -28,8 +29,12 @@ class PlayerResource(
     }
 
     @GetMapping("/{id}")
-    fun findPlayerById(@PathVariable id: String): ResponseEntity<PlayerResponse> {
-        val player = playerService.findById(id)
+    fun findPlayerById(@PathVariable id: String): ResponseEntity<Any> {
+        val player = try {
+            playerService.findById(id)
+        } catch (e: NotFoundException) {
+            return ResponseEntity.badRequest().body(e.message)
+        }
 
         return ResponseEntity
             .ok(
