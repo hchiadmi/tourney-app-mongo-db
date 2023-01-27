@@ -41,4 +41,18 @@ class PlayerResource(
                 PlayerResponse.fromModel(player)
             )
     }
+
+    @GetMapping("/name/{name}")
+    fun findPlayerByName(@PathVariable name: String): ResponseEntity<Any> {
+        val player = try {
+            playerService.findByName(name)
+        } catch (e: NotFoundException) {
+            return ResponseEntity.badRequest().body(e.message)
+        }
+
+        return ResponseEntity
+            .ok(
+                PlayerResponse.fromModel(player)
+            )
+    }
 }

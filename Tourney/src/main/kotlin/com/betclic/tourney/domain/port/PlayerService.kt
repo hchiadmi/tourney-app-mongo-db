@@ -7,4 +7,6 @@ interface PlayerService {
     fun createPlayer(request: PlayerRequest): Player
 
     fun findById(id: String): Player
+
+    fun findByName(name: String): Player
 }

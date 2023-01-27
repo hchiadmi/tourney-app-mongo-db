@@ -37,7 +37,7 @@ class PlayerDatabaseServiceTest {
     }
 
     @Test
-    fun `should throw NotFoundException when player name is unknown`(){
+    fun `should throw NotFoundException when player id is unknown`(){
         every { playerRepository.findById(any()) } returns Optional.empty()
 
         val exception = assertThrows<NotFoundException> {
@@ -45,5 +45,16 @@ class PlayerDatabaseServiceTest {
         }
 
         assertEquals("Player with id [23231314] is unknown", exception.message)
+    }
+
+    @Test
+    fun `should throw NotFoundException when player name is unknown`(){
+        every { playerRepository.findByName(any()) } returns null
+
+        val exception = assertThrows<NotFoundException> {
+            playerDatabaseService.findByName("Bob")
+        }
+
+        assertEquals("Player with name [Bob] is unknown", exception.message)
     }
 }

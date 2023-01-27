@@ -29,4 +29,9 @@ class PlayerDatabaseService(
             NotFoundException("Player with id [$id] is unknown")
         }
     }
+
+    override fun findByName(name: String): Player {
+        return playerRepository.findByName(name)
+            ?: throw NotFoundException("Player with name [$name] is unknown")
+    }
 }
