@@ -4,6 +4,7 @@ import com.betclic.tourney.boundary.request.PlayerRequest
 import com.betclic.tourney.boundary.response.PlayerResponse
 import com.betclic.tourney.domain.exception.InvalidRequestArgumentsException
 import com.betclic.tourney.domain.exception.NotFoundException
+import com.betclic.tourney.domain.exception.PlayerAlreadyExistsException
 import com.betclic.tourney.domain.port.PlayerService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -19,6 +20,8 @@ class PlayerResource(
         val createdPlayer = try {
             playerService.createPlayer(request)
         } catch (e : InvalidRequestArgumentsException) {
+            return ResponseEntity.badRequest().body(e.message)
+        } catch (e : PlayerAlreadyExistsException) {
             return ResponseEntity.badRequest().body(e.message)
         }
 

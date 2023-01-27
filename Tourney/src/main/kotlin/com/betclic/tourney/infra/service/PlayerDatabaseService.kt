@@ -3,6 +3,7 @@ package com.betclic.tourney.infra.service
 import com.betclic.tourney.boundary.request.PlayerRequest
 import com.betclic.tourney.domain.exception.InvalidRequestArgumentsException
 import com.betclic.tourney.domain.exception.NotFoundException
+import com.betclic.tourney.domain.exception.PlayerAlreadyExistsException
 import com.betclic.tourney.domain.model.Player
 import com.betclic.tourney.domain.port.PlayerService
 import com.betclic.tourney.infra.repository.PlayerRepository
@@ -15,6 +16,9 @@ class PlayerDatabaseService(
     override fun createPlayer(request: PlayerRequest): Player {
         if (request.name.isNullOrEmpty()) {
             throw InvalidRequestArgumentsException("Bad arguments for add player request")
+        }
+        if (playerRepository.findByName(request.name) != null) {
+            throw PlayerAlreadyExistsException("Player with name [${request.name}] already exists")
         }
 
         return playerRepository.save(
