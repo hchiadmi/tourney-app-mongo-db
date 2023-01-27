@@ -8,12 +8,10 @@ import org.junit.jupiter.api.Test
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 
-
 class AddPlayerE2ETest : E2ETest(){
 
 	@Test
 	fun `should add player to database with 200 status`() {
-
 		// Given
 		val player = Player(
 			name = "Axa"
@@ -42,7 +40,6 @@ class AddPlayerE2ETest : E2ETest(){
 
 	@Test
 	fun `should throw error response when null player name is given`() {
-
 		// Given
 		val playerRequestBody = """
 			{
@@ -56,7 +53,6 @@ class AddPlayerE2ETest : E2ETest(){
 			playerRequestBody
 		)
 
-
 		// Then
 		assertNotNull(response!!)
 		assertEquals(HttpStatus.BAD_REQUEST, response.statusCode)
@@ -66,7 +62,6 @@ class AddPlayerE2ETest : E2ETest(){
 
 	@Test
 	fun `should throw error response when empty player name is given`() {
-
 		// Given
 		val playerRequestBody = """
 			{
@@ -80,7 +75,6 @@ class AddPlayerE2ETest : E2ETest(){
 			playerRequestBody
 		)
 
-
 		// Then
 		assertNotNull(response!!)
 		assertEquals(HttpStatus.BAD_REQUEST, response.statusCode)
@@ -90,7 +84,6 @@ class AddPlayerE2ETest : E2ETest(){
 
 	@Test
 	fun `should throw error response when no name field is given in request`() {
-
 		// Given
 		val playerRequestBody = """
 			{
@@ -103,7 +96,6 @@ class AddPlayerE2ETest : E2ETest(){
 			"${applicationUrl()}/api/player",
 			playerRequestBody
 		)
-
 
 		// Then
 		assertNotNull(response!!)
