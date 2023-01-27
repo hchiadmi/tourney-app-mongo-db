@@ -22,7 +22,7 @@ class FindPlayerE2ETest : E2ETest(){
 	}
 
 	@Test
-	fun `should find given player from database with 200 status`() {
+	fun `should find given player id from database with 200 status`() {
 		//
 		val player = playerRepository.save(
 			Player(
@@ -47,7 +47,7 @@ class FindPlayerE2ETest : E2ETest(){
 	}
 
 	@Test
-	fun `should throw error response when unknown player is given`() {
+	fun `should throw error response when unknown player id is given`() {
 		//
 		val player = Player(
 			"63d3db86d029c7506ddacfff",
