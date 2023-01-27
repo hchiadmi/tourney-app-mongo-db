@@ -63,4 +63,28 @@ class AddPlayerE2ETest : E2ETest(){
 		assertNotNull(response.body)
 		assertEquals("Bad arguments for add player request", response.body)
 	}
+
+	@Test
+	fun `should throw error response when empty player name is given`() {
+
+		// Given
+		val playerRequestBody = """
+			{
+			    "name": ""
+			}
+		""".trimIndent()
+
+		// When
+		val response = HttpHelper.sendPostRequest<String>(
+			"${applicationUrl()}/api/player",
+			playerRequestBody
+		)
+
+
+		// Then
+		assertNotNull(response!!)
+		assertEquals(HttpStatus.BAD_REQUEST, response.statusCode)
+		assertNotNull(response.body)
+		assertEquals("Bad arguments for add player request", response.body)
+	}
 }

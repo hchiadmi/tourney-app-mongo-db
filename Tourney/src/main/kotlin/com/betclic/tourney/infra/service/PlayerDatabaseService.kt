@@ -12,7 +12,7 @@ class PlayerDatabaseService(
     private val playerRepository: PlayerRepository
 ) : PlayerService {
     override fun createPlayer(request: PlayerRequest): Player {
-        if (request.name == null) {
+        if (request.name.isNullOrEmpty()) {
             throw InvalidRequestArgumentsException("Bad arguments for add player request")
         }
 
