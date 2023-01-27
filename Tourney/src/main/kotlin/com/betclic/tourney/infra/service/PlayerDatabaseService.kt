@@ -42,4 +42,8 @@ class PlayerDatabaseService(
     override fun deleteAllPlayers() {
         playerRepository.deleteAll()
     }
+
+    override fun findAll(): List<Player> {
+        return playerRepository.findAllByOrderByScoreDesc()
+    }
 }

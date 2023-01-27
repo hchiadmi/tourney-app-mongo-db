@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface PlayerRepository : MongoRepository<Player, String> {
     fun findByName(name: String): Player?
+
+    fun findAllByOrderByScoreDesc(): List<Player>
 }

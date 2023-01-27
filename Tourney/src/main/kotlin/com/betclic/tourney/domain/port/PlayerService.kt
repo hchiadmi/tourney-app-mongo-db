@@ -10,5 +10,7 @@ interface PlayerService {
 
     fun findByName(name: String): Player
 
+    fun findAll(): List<Player>
+
     fun deleteAllPlayers()
 }

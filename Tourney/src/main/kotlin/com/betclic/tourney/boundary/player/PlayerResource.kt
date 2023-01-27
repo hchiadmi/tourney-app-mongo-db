@@ -6,6 +6,7 @@ import com.betclic.tourney.domain.exception.InvalidRequestArgumentsException
 import com.betclic.tourney.domain.exception.NotFoundException
 import com.betclic.tourney.domain.exception.PlayerAlreadyExistsException
 import com.betclic.tourney.domain.port.PlayerService
+import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -56,6 +57,16 @@ class PlayerResource(
         return ResponseEntity
             .ok(
                 PlayerResponse.fromModel(player)
+            )
+    }
+
+    @GetMapping("/all", produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun findAllPlayers(): ResponseEntity<List<PlayerResponse>> {
+        val players = playerService.findAll()
+
+        return ResponseEntity
+            .ok(
+                players.map { PlayerResponse.fromModel(it) }
             )
     }
 
