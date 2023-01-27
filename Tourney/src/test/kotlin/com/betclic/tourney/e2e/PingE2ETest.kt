@@ -9,7 +9,7 @@ class PingE2ETest : E2ETest() {
     @Test
     fun `should return 200 for ping resource`() {
         // WHEN
-        val result = HttpHelper.sendRequest<String>("${applicationUrl()}/ping")
+        val result = HttpHelper.sendGetRequest<String>("${applicationUrl()}/ping")
 
         // THEN
         assertNotNull(result)

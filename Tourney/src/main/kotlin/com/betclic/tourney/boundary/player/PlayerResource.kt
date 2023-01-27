@@ -26,4 +26,14 @@ class PlayerResource(
                 PlayerResponse.fromModel(createdPlayer)
             )
     }
+
+    @GetMapping("/{id}")
+    fun findPlayerById(@PathVariable id: String): ResponseEntity<PlayerResponse> {
+        val player = playerService.findById(id)
+
+        return ResponseEntity
+            .ok(
+                PlayerResponse.fromModel(player)
+            )
+    }
 }

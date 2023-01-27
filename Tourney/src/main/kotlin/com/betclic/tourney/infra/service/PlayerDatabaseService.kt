@@ -22,4 +22,8 @@ class PlayerDatabaseService(
             )
         )
     }
+
+    override fun findById(id: String): Player {
+        return playerRepository.findById(id).get()
+    }
 }
