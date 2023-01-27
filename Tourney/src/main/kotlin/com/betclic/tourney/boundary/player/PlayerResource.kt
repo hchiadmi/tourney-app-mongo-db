@@ -2,6 +2,7 @@ package com.betclic.tourney.boundary.player
 
 import com.betclic.tourney.boundary.request.PlayerRequest
 import com.betclic.tourney.boundary.response.PlayerResponse
+import com.betclic.tourney.domain.exception.InvalidRequestArgumentsException
 import com.betclic.tourney.domain.port.PlayerService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -13,8 +14,12 @@ class PlayerResource(
 ) {
 
     @PostMapping
-    fun createPlayer(@RequestBody request: PlayerRequest): ResponseEntity<PlayerResponse> {
-        val createdPlayer = playerService.createPlayer(request)
+    fun createPlayer(@RequestBody request: PlayerRequest): ResponseEntity<Any> {
+        val createdPlayer = try {
+            playerService.createPlayer(request)
+        } catch (e : InvalidRequestArgumentsException) {
+            return ResponseEntity.badRequest().body(e.message)
+        }
 
         return ResponseEntity
             .ok(
