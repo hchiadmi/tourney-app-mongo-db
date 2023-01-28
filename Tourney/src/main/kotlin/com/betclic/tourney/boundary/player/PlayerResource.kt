@@ -76,4 +76,16 @@ class PlayerResource(
 
         return ResponseEntity.ok("Deleted all players")
     }
+
+    @PatchMapping
+    fun patchPlayer(
+        @RequestBody request: PlayerRequest
+    ): ResponseEntity<Any> {
+        val patchedPlayer = playerService.patchPlayerScore(request)
+
+        return ResponseEntity
+            .ok(
+                PlayerResponse.fromModel(patchedPlayer)
+            )
+    }
 }

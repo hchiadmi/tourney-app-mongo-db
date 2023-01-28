@@ -13,4 +13,6 @@ interface PlayerService {
     fun findAll(): List<Player>
 
     fun deleteAllPlayers()
+
+    fun patchPlayerScore(request: PlayerRequest): Player
 }

@@ -46,4 +46,14 @@ class PlayerDatabaseService(
     override fun findAll(): List<Player> {
         return playerRepository.findAllByOrderByScoreDesc()
     }
+
+    override fun patchPlayerScore(request: PlayerRequest): Player {
+        val playerToPatch = findByName(request.name!!)
+
+        return playerRepository.save(
+            playerToPatch.apply {
+                this.score = request.score!!
+            }
+        )
+    }
 }

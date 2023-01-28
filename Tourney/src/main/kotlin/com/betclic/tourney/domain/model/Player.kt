@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Field
 data class Player(
     @Id
     val id: String? = null,
-    val name : String,
+    var name: String,
     @Field("score")
-    val score: Int = 0,
+    var score: Int = 0,
 )
