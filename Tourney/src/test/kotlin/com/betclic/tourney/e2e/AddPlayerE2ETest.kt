@@ -76,6 +76,45 @@ class AddPlayerE2ETest : E2ETest(){
 		assertNotNull(response.body!!.id)
 		assertEquals(playerRequest.name, response.body!!.name)
 		assertEquals(playerRequest.score, response.body!!.score)
+		assertEquals(1, response.body!!.rank)
+	}
+
+	@Test
+	fun `should update all players ranks when adding a new player with status 200`() {
+		// Given
+		val alreadyInBasePlayer = playerRepository.save(
+			PlayerFactory.create(
+				"63d3db86d029c7506ddacfff",
+				"Bob",
+				12,
+				1
+			)
+		)
+
+		val playerRequest = PlayerRequest(
+			name = "Axa",
+			score = 13
+		)
+
+		// When
+		val response: ResponseEntity<PlayerResponse>? = HttpHelper.sendPostRequest(
+			"${applicationUrl()}/api/player",
+			objectMapper.writer().writeValueAsString(playerRequest)
+		)
+
+		// Then
+		assertNotNull(response!!)
+		assertEquals(HttpStatus.OK, response.statusCode)
+		assertNotNull(response.body)
+		assertNotNull(response.body!!.id)
+		assertEquals(playerRequest.name, response.body!!.name)
+		assertEquals(playerRequest.score, response.body!!.score)
+		assertEquals(1, response.body!!.rank)
+		val updatedPlayer = playerRepository.findByName(alreadyInBasePlayer.name)
+		assertNotNull(updatedPlayer)
+		assertEquals(alreadyInBasePlayer.name, updatedPlayer!!.name)
+		assertEquals(alreadyInBasePlayer.score, updatedPlayer.score)
+		assertEquals(2, updatedPlayer.rank)
 	}
 
 	@Test

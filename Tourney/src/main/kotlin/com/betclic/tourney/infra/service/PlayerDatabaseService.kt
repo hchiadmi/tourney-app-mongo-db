@@ -22,12 +22,16 @@ class PlayerDatabaseService(
             throw PlayerAlreadyExistsException("Player with name [${request.name}] already exists")
         }
 
-        return playerRepository.save(
+        val createdPlayer = playerRepository.save(
             PlayerFactory.create(
                 name = request.name,
                 score = request.score
             )
         )
+
+        updateAllPlayersRanks()
+
+        return playerRepository.findByName(createdPlayer.name)!!
     }
 
     override fun findById(id: String): Player {
@@ -56,6 +60,12 @@ class PlayerDatabaseService(
             playerToPatch.apply {
                 this.score = request.score!!
             }
+        )
+    }
+
+    private fun updateAllPlayersRanks() {
+        playerRepository.saveAll(
+            playerRepository.findAll().updatePlayersRanks()
         )
     }
 }
