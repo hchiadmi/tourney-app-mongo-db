@@ -60,6 +60,7 @@ class PlayerResource(
             )
     }
 
+    @CrossOrigin(origins = ["http://localhost:4200"])
     @GetMapping("/all", produces = [MediaType.APPLICATION_JSON_VALUE])
     fun findAllPlayers(): ResponseEntity<List<PlayerResponse>> {
         val players = playerService.findAll()
