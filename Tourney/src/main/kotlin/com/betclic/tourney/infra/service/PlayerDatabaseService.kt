@@ -4,6 +4,7 @@ import com.betclic.tourney.boundary.request.PlayerRequest
 import com.betclic.tourney.domain.exception.InvalidRequestArgumentsException
 import com.betclic.tourney.domain.exception.NotFoundException
 import com.betclic.tourney.domain.exception.PlayerAlreadyExistsException
+import com.betclic.tourney.domain.factory.PlayerFactory
 import com.betclic.tourney.domain.model.Player
 import com.betclic.tourney.domain.port.PlayerService
 import com.betclic.tourney.infra.repository.PlayerRepository
@@ -22,7 +23,7 @@ class PlayerDatabaseService(
         }
 
         return playerRepository.save(
-            Player(
+            PlayerFactory.create(
                 name = request.name,
             )
         )

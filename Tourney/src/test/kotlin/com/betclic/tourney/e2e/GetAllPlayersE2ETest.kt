@@ -1,6 +1,7 @@
 package com.betclic.tourney.e2e
 
 import com.betclic.tourney.boundary.response.PlayerResponse
+import com.betclic.tourney.domain.factory.PlayerFactory
 import com.betclic.tourney.domain.model.Player
 import com.betclic.tourney.e2e.helper.HttpHelper
 import com.betclic.tourney.infra.repository.PlayerRepository
@@ -26,7 +27,7 @@ class GetAllPlayersE2ETest : E2ETest(){
 	fun `should find given player id from database with 200 status`() {
 		// Given
 		val bob = playerRepository.save(
-			Player(
+			PlayerFactory.create(
 				"1",
 				"Bob",
 				5
@@ -34,7 +35,7 @@ class GetAllPlayersE2ETest : E2ETest(){
 		)
 
 		val alex = playerRepository.save(
-			Player(
+			PlayerFactory.create(
 				"2",
 				"Alex",
 				12
@@ -42,7 +43,7 @@ class GetAllPlayersE2ETest : E2ETest(){
 		)
 
 		val tom = playerRepository.save(
-			Player(
+			PlayerFactory.create(
 				"3",
 				"tom",
 				7

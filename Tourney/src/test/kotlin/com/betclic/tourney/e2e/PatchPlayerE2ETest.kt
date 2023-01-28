@@ -2,7 +2,7 @@ package com.betclic.tourney.e2e
 
 import com.betclic.tourney.boundary.request.PlayerRequest
 import com.betclic.tourney.boundary.response.PlayerResponse
-import com.betclic.tourney.domain.model.Player
+import com.betclic.tourney.domain.factory.PlayerFactory
 import com.betclic.tourney.infra.repository.PlayerRepository
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.Assertions
@@ -33,9 +33,9 @@ class PatchPlayerE2ETest : E2ETest(){
 
 	@Test
 	fun `should patch player score with 200 status`() {
-		//
+		// Given
 		val player = playerRepository.save(
-			Player(
+			PlayerFactory.create(
 				"63d3db86d029c7506ddacfff",
 				"Bob",
 				0
@@ -63,7 +63,7 @@ class PatchPlayerE2ETest : E2ETest(){
 	@Test
 	fun `should not patch unknown player score and return status 404`() {
 		// Given
-		val unSavedPlayer = Player(
+		val unSavedPlayer = PlayerFactory.create(
 			"63d3db86d029c7506ddacfff",
 			"Bob",
 			0

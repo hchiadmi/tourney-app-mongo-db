@@ -7,8 +7,13 @@ import org.springframework.data.mongodb.core.mapping.Field
 @Document("players")
 data class Player(
     @Id
-    val id: String? = null,
+    val id: String?,
     var name: String,
     @Field("score")
-    var score: Int = 0,
-)
+    var score: Int,
+    var rank: Int?
+) {
+    companion object {
+        const val DEFAULT_SCORE = 0
+    }
+}

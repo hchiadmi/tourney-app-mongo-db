@@ -1,7 +1,7 @@
 package com.betclic.tourney.e2e
 
 import com.betclic.tourney.boundary.response.PlayerResponse
-import com.betclic.tourney.domain.model.Player
+import com.betclic.tourney.domain.factory.PlayerFactory
 import com.betclic.tourney.e2e.helper.HttpHelper
 import com.betclic.tourney.infra.repository.PlayerRepository
 import org.junit.jupiter.api.Assertions.*
@@ -25,10 +25,9 @@ class FindPlayerE2ETest : E2ETest(){
 	fun `should find given player id from database with 200 status`() {
 		// Given
 		val player = playerRepository.save(
-			Player(
+			PlayerFactory.create(
 				"63d3db86d029c7506ddacfff",
-				"Bob",
-				0
+				"Bob"
 			)
 		)
 
@@ -49,10 +48,9 @@ class FindPlayerE2ETest : E2ETest(){
 	@Test
 	fun `should throw error response when unknown player id is given`() {
 		// Given
-		val player = Player(
+		val player = PlayerFactory.create(
 			"63d3db86d029c7506ddacfff",
-			"Bob",
-			0
+			"Bob"
 		)
 
 		// When
@@ -71,10 +69,9 @@ class FindPlayerE2ETest : E2ETest(){
 	fun `should find given player name from database with 200 status`() {
 		// Given
 		val player = playerRepository.save(
-			Player(
+			PlayerFactory.create(
 				"63d3db86d029c7506ddacfff",
-				"Bob",
-				0
+				"Bob"
 			)
 		)
 
@@ -95,10 +92,9 @@ class FindPlayerE2ETest : E2ETest(){
 	@Test
 	fun `should throw error response when unknown player name is given`() {
 		// Given
-		val player = Player(
+		val player = PlayerFactory.create(
 			"63d3db86d029c7506ddacfff",
-			"Bob",
-			0
+			"Bob"
 		)
 
 		// When

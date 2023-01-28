@@ -4,7 +4,7 @@ import com.betclic.tourney.boundary.request.PlayerRequest
 import com.betclic.tourney.domain.exception.InvalidRequestArgumentsException
 import com.betclic.tourney.domain.exception.NotFoundException
 import com.betclic.tourney.domain.exception.PlayerAlreadyExistsException
-import com.betclic.tourney.domain.model.Player
+import com.betclic.tourney.domain.factory.PlayerFactory
 import com.betclic.tourney.infra.repository.PlayerRepository
 import com.betclic.tourney.infra.service.PlayerDatabaseService
 import io.mockk.every
@@ -62,7 +62,7 @@ class PlayerDatabaseServiceTest {
 
     @Test
     fun `should throw PlayerAlreadyExistsException when added player name is taken`(){
-        every { playerRepository.findByName(any()) } returns Player(name = "Bob")
+        every { playerRepository.findByName(any()) } returns PlayerFactory.create(name = "Bob")
 
         val exception = assertThrows<PlayerAlreadyExistsException> {
             playerDatabaseService.createPlayer(PlayerRequest("Bob"))

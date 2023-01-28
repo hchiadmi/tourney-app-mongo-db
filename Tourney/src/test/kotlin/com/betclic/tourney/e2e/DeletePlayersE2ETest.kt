@@ -1,6 +1,6 @@
 package com.betclic.tourney.e2e
 
-import com.betclic.tourney.domain.model.Player
+import com.betclic.tourney.domain.factory.PlayerFactory
 import com.betclic.tourney.e2e.helper.HttpHelper
 import com.betclic.tourney.infra.repository.PlayerRepository
 import org.junit.jupiter.api.Assertions.*
@@ -24,10 +24,9 @@ class DeletePlayersE2ETest : E2ETest(){
 	fun `should delete all players with status 200`() {
 		// Given
 		playerRepository.save(
-			Player(
+			PlayerFactory.create(
 				"63d3db86d029c7506ddacfff",
-				"Bob",
-				0
+				"Bob"
 			)
 		)
 

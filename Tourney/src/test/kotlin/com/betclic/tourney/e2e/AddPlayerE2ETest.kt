@@ -1,6 +1,7 @@
 package com.betclic.tourney.e2e
 
 import com.betclic.tourney.boundary.response.PlayerResponse
+import com.betclic.tourney.domain.factory.PlayerFactory
 import com.betclic.tourney.domain.model.Player
 import com.betclic.tourney.e2e.helper.HttpHelper
 import com.betclic.tourney.infra.repository.PlayerRepository
@@ -24,7 +25,7 @@ class AddPlayerE2ETest : E2ETest(){
 	@Test
 	fun `should add player to database with 200 status`() {
 		// Given
-		val player = Player(
+		val player = PlayerFactory.create(
 			name = "Axa"
 		)
 
@@ -46,7 +47,7 @@ class AddPlayerE2ETest : E2ETest(){
 		assertNotNull(response.body)
 		assertNotNull(response.body!!.id)
 		assertEquals(player.name, response.body!!.name)
-		assertEquals(0, response.body!!.score)
+		assertEquals(Player.DEFAULT_SCORE, response.body!!.score)
 	}
 
 	@Test
@@ -119,10 +120,9 @@ class AddPlayerE2ETest : E2ETest(){
 	fun `should throw error response when added player name is already taken`() {
 		// Given
 		val player = playerRepository.save(
-			Player(
+			PlayerFactory.create(
 				"63d3db86d029c7506ddacfff",
-				"Bob",
-				0
+				"Bob"
 			)
 		)
 
