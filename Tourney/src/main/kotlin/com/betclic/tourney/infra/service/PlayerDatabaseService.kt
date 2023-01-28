@@ -25,6 +25,7 @@ class PlayerDatabaseService(
         return playerRepository.save(
             PlayerFactory.create(
                 name = request.name,
+                score = request.score
             )
         )
     }

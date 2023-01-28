@@ -1,10 +1,12 @@
 package com.betclic.tourney.e2e
 
+import com.betclic.tourney.boundary.request.PlayerRequest
 import com.betclic.tourney.boundary.response.PlayerResponse
 import com.betclic.tourney.domain.factory.PlayerFactory
 import com.betclic.tourney.domain.model.Player
 import com.betclic.tourney.e2e.helper.HttpHelper
 import com.betclic.tourney.infra.repository.PlayerRepository
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -16,6 +18,9 @@ class AddPlayerE2ETest : E2ETest(){
 
 	@Autowired
 	private lateinit var playerRepository: PlayerRepository
+
+	@Autowired
+	private lateinit var objectMapper: ObjectMapper
 
 	@BeforeEach
 	fun emptyDatabase(){
@@ -48,6 +53,29 @@ class AddPlayerE2ETest : E2ETest(){
 		assertNotNull(response.body!!.id)
 		assertEquals(player.name, response.body!!.name)
 		assertEquals(Player.DEFAULT_SCORE, response.body!!.score)
+	}
+
+	@Test
+	fun `should add player with score to database with 200 status`() {
+		// Given
+		val playerRequest = PlayerRequest(
+			name = "Axa",
+			score = 12
+		)
+
+		// When
+		val response: ResponseEntity<PlayerResponse>? = HttpHelper.sendPostRequest(
+			"${applicationUrl()}/api/player",
+			objectMapper.writer().writeValueAsString(playerRequest)
+		)
+
+		// Then
+		assertNotNull(response!!)
+		assertEquals(HttpStatus.OK, response.statusCode)
+		assertNotNull(response.body)
+		assertNotNull(response.body!!.id)
+		assertEquals(playerRequest.name, response.body!!.name)
+		assertEquals(playerRequest.score, response.body!!.score)
 	}
 
 	@Test
