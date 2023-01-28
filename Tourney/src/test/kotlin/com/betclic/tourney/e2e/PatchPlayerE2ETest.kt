@@ -62,7 +62,7 @@ class PatchPlayerE2ETest : E2ETest(){
 
 	@Test
 	fun `should not patch unknown player score and return status 400`() {
-		//
+		// Given
 		val unSavedPlayer = Player(
 			"63d3db86d029c7506ddacfff",
 			"Bob",
@@ -71,7 +71,7 @@ class PatchPlayerE2ETest : E2ETest(){
 
 		val playerRequest = PlayerRequest(unSavedPlayer.name, 12)
 
-		//When
+		// When
 		val response = mockMvc.patch("${applicationUrl()}/api/player"){
 			contentType = MediaType.APPLICATION_JSON
 			content = objectMapper.writer().writeValueAsString(playerRequest)

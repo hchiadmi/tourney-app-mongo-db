@@ -23,7 +23,7 @@ class FindPlayerE2ETest : E2ETest(){
 
 	@Test
 	fun `should find given player id from database with 200 status`() {
-		//
+		// Given
 		val player = playerRepository.save(
 			Player(
 				"63d3db86d029c7506ddacfff",
@@ -32,7 +32,7 @@ class FindPlayerE2ETest : E2ETest(){
 			)
 		)
 
-		//When
+		// When
 		val response: ResponseEntity<PlayerResponse>? = HttpHelper.sendGetRequest(
 			"${applicationUrl()}/api/player/${player.id}"
 		)
@@ -48,14 +48,14 @@ class FindPlayerE2ETest : E2ETest(){
 
 	@Test
 	fun `should throw error response when unknown player id is given`() {
-		//
+		// Given
 		val player = Player(
 			"63d3db86d029c7506ddacfff",
 			"Bob",
 			0
 		)
 
-		//When
+		// When
 		val response: ResponseEntity<String>? = HttpHelper.sendGetRequest(
 			"${applicationUrl()}/api/player/${player.id}"
 		)
@@ -69,7 +69,7 @@ class FindPlayerE2ETest : E2ETest(){
 
 	@Test
 	fun `should find given player name from database with 200 status`() {
-		//
+		// Given
 		val player = playerRepository.save(
 			Player(
 				"63d3db86d029c7506ddacfff",
@@ -78,7 +78,7 @@ class FindPlayerE2ETest : E2ETest(){
 			)
 		)
 
-		//When
+		// When
 		val response: ResponseEntity<PlayerResponse>? = HttpHelper.sendGetRequest(
 			"${applicationUrl()}/api/player/name/${player.name}"
 		)
@@ -94,14 +94,14 @@ class FindPlayerE2ETest : E2ETest(){
 
 	@Test
 	fun `should throw error response when unknown player name is given`() {
-		//
+		// Given
 		val player = Player(
 			"63d3db86d029c7506ddacfff",
 			"Bob",
 			0
 		)
 
-		//When
+		// When
 		val response: ResponseEntity<String>? = HttpHelper.sendGetRequest(
 			"${applicationUrl()}/api/player/name/${player.name}"
 		)
