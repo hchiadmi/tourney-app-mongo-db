@@ -81,7 +81,11 @@ class PlayerResource(
     fun patchPlayer(
         @RequestBody request: PlayerRequest
     ): ResponseEntity<Any> {
-        val patchedPlayer = playerService.patchPlayerScore(request)
+        val patchedPlayer = try {
+            playerService.patchPlayerScore(request)
+        } catch (e: NotFoundException) {
+            return ResponseEntity.badRequest().body(e.message)
+        }
 
         return ResponseEntity
             .ok(
