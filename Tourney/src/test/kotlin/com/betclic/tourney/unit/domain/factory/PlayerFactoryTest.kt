@@ -1,4 +1,4 @@
-package com.betclic.tourney.unit
+package com.betclic.tourney.unit.domain.factory
 
 import com.betclic.tourney.domain.factory.PlayerFactory
 import com.betclic.tourney.domain.model.Player

@@ -1,4 +1,4 @@
-package com.betclic.tourney.unit
+package com.betclic.tourney.unit.infra
 
 import com.betclic.tourney.boundary.request.PlayerRequest
 import com.betclic.tourney.domain.exception.InvalidRequestArgumentsException
