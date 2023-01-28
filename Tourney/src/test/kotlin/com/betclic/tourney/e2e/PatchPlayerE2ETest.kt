@@ -61,7 +61,7 @@ class PatchPlayerE2ETest : E2ETest(){
 	}
 
 	@Test
-	fun `should not patch unknown player score and return status 400`() {
+	fun `should not patch unknown player score and return status 404`() {
 		// Given
 		val unSavedPlayer = Player(
 			"63d3db86d029c7506ddacfff",
