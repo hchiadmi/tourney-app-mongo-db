@@ -62,7 +62,7 @@ class FindPlayerE2ETest : E2ETest(){
 
 		// Then
 		assertNotNull(response!!)
-		assertEquals(HttpStatus.BAD_REQUEST, response.statusCode)
+		assertEquals(HttpStatus.NOT_FOUND, response.statusCode)
 		assertNotNull(response.body)
 		assertEquals("Player with id [${player.id}] is unknown" ,response.body)
 	}
@@ -108,7 +108,7 @@ class FindPlayerE2ETest : E2ETest(){
 
 		// Then
 		assertNotNull(response!!)
-		assertEquals(HttpStatus.BAD_REQUEST, response.statusCode)
+		assertEquals(HttpStatus.NOT_FOUND, response.statusCode)
 		assertNotNull(response.body)
 		assertEquals("Player with name [${player.name}] is unknown" ,response.body)
 	}

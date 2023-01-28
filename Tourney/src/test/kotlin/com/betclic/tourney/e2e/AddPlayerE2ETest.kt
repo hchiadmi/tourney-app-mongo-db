@@ -140,7 +140,7 @@ class AddPlayerE2ETest : E2ETest(){
 
 		// Then
 		assertNotNull(response!!)
-		assertEquals(HttpStatus.BAD_REQUEST, response.statusCode)
+		assertEquals(HttpStatus.CONFLICT, response.statusCode)
 		assertNotNull(response.body)
 		assertEquals("Player with name [${player.name}] already exists", response.body)
 	}

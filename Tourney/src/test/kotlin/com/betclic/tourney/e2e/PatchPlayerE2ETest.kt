@@ -79,7 +79,7 @@ class PatchPlayerE2ETest : E2ETest(){
 
 		// Then
 		val content = response.andExpect {
-			status { isBadRequest() }
+			status { isNotFound() }
 		}.andReturn()
 
 		Assertions.assertEquals("Player with name [${playerRequest.name}] is unknown", content.response.contentAsString)

@@ -23,7 +23,7 @@ class PlayerResource(
         } catch (e : InvalidRequestArgumentsException) {
             return ResponseEntity.badRequest().body(e.message)
         } catch (e : PlayerAlreadyExistsException) {
-            return ResponseEntity.badRequest().body(e.message)
+            return ResponseEntity.status(409).body(e.message)
         }
 
         return ResponseEntity
@@ -37,7 +37,7 @@ class PlayerResource(
         val player = try {
             playerService.findById(id)
         } catch (e: NotFoundException) {
-            return ResponseEntity.badRequest().body(e.message)
+            return ResponseEntity.status(404).body(e.message)
         }
 
         return ResponseEntity
@@ -51,7 +51,7 @@ class PlayerResource(
         val player = try {
             playerService.findByName(name)
         } catch (e: NotFoundException) {
-            return ResponseEntity.badRequest().body(e.message)
+            return ResponseEntity.status(404).body(e.message)
         }
 
         return ResponseEntity
@@ -84,7 +84,7 @@ class PlayerResource(
         val patchedPlayer = try {
             playerService.patchPlayerScore(request)
         } catch (e: NotFoundException) {
-            return ResponseEntity.badRequest().body(e.message)
+            return ResponseEntity.status(404).body(e.message)
         }
 
         return ResponseEntity
