@@ -46,7 +46,7 @@ class PatchPlayerE2ETest : E2ETest(){
 		val playerRequest = PlayerRequest(player.name, 12)
 
 		//When
-		val response = mockMvc.patch("${applicationUrl()}/api/player"){
+		val response = mockMvc.patch("${applicationUrl()}/players"){
 			contentType = MediaType.APPLICATION_JSON
 			content = objectMapper.writer().writeValueAsString(playerRequest)
 		}
@@ -84,7 +84,7 @@ class PatchPlayerE2ETest : E2ETest(){
 		val playerRequest = PlayerRequest(alex.name, 14)
 
 		//When
-		val response = mockMvc.patch("${applicationUrl()}/api/player"){
+		val response = mockMvc.patch("${applicationUrl()}/players"){
 			contentType = MediaType.APPLICATION_JSON
 			content = objectMapper.writer().writeValueAsString(playerRequest)
 		}
@@ -114,7 +114,7 @@ class PatchPlayerE2ETest : E2ETest(){
 		val playerRequest = PlayerRequest(unSavedPlayer.name, 12)
 
 		// When
-		val response = mockMvc.patch("${applicationUrl()}/api/player"){
+		val response = mockMvc.patch("${applicationUrl()}/players"){
 			contentType = MediaType.APPLICATION_JSON
 			content = objectMapper.writer().writeValueAsString(playerRequest)
 		}

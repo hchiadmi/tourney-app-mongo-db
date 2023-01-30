@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/player")
+@RequestMapping("/players")
 class PlayerResource(
     private val playerService: PlayerService
 ) {
@@ -61,7 +61,7 @@ class PlayerResource(
     }
 
     @CrossOrigin(origins = ["http://localhost:4200"])
-    @GetMapping("/all", produces = [MediaType.APPLICATION_JSON_VALUE])
+    @GetMapping(produces = [MediaType.APPLICATION_JSON_VALUE])
     fun findAllPlayers(): ResponseEntity<List<PlayerResponse>> {
         val players = playerService.findAll()
 

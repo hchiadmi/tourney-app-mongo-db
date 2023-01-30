@@ -52,7 +52,7 @@ class GetAllPlayersE2ETest : E2ETest(){
 
 		// When
 		val response: ResponseEntity<List<PlayerResponse>>? = HttpHelper.sendGetRequest(
-			"${applicationUrl()}/api/player/all"
+			"${applicationUrl()}/players"
 		)
 
 		// Then

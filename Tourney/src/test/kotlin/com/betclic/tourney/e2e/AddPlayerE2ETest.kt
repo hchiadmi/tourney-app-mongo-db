@@ -42,7 +42,7 @@ class AddPlayerE2ETest : E2ETest(){
 
 		// When
 		val response: ResponseEntity<PlayerResponse>? = HttpHelper.sendPostRequest(
-			"${applicationUrl()}/api/player",
+			"${applicationUrl()}/players",
 			playerRequestBody
 		)
 
@@ -65,7 +65,7 @@ class AddPlayerE2ETest : E2ETest(){
 
 		// When
 		val response: ResponseEntity<PlayerResponse>? = HttpHelper.sendPostRequest(
-			"${applicationUrl()}/api/player",
+			"${applicationUrl()}/players",
 			objectMapper.writer().writeValueAsString(playerRequest)
 		)
 
@@ -98,7 +98,7 @@ class AddPlayerE2ETest : E2ETest(){
 
 		// When
 		val response: ResponseEntity<PlayerResponse>? = HttpHelper.sendPostRequest(
-			"${applicationUrl()}/api/player",
+			"${applicationUrl()}/players",
 			objectMapper.writer().writeValueAsString(playerRequest)
 		)
 
@@ -128,7 +128,7 @@ class AddPlayerE2ETest : E2ETest(){
 
 		// When
 		val response = HttpHelper.sendPostRequest<String>(
-			"${applicationUrl()}/api/player",
+			"${applicationUrl()}/players",
 			playerRequestBody
 		)
 
@@ -150,7 +150,7 @@ class AddPlayerE2ETest : E2ETest(){
 
 		// When
 		val response = HttpHelper.sendPostRequest<String>(
-			"${applicationUrl()}/api/player",
+			"${applicationUrl()}/players",
 			playerRequestBody
 		)
 
@@ -172,7 +172,7 @@ class AddPlayerE2ETest : E2ETest(){
 
 		// When
 		val response = HttpHelper.sendPostRequest<String>(
-			"${applicationUrl()}/api/player",
+			"${applicationUrl()}/players",
 			playerRequestBody
 		)
 
@@ -201,7 +201,7 @@ class AddPlayerE2ETest : E2ETest(){
 
 		// When
 		val response = HttpHelper.sendPostRequest<String>(
-			"${applicationUrl()}/api/player",
+			"${applicationUrl()}/players",
 			playerRequestBody
 		)
 

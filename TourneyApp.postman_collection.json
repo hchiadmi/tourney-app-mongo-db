@@ -20,7 +20,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/player",
+					"raw": "http://localhost:8080/players",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -71,7 +71,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/player/63d3f06d65830e07a11bf632",
+					"raw": "http://localhost:8080/players/63d3f06d65830e07a11bf632",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -101,7 +101,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/player",
+					"raw": "http://localhost:8080/players",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -121,7 +121,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/player/name/Alex",
+					"raw": "http://localhost:8080/players/name/Alex",
 					"protocol": "http",
 					"host": [
 						"localhost"

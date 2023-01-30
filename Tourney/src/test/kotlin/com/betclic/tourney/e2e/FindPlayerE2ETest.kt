@@ -33,7 +33,7 @@ class FindPlayerE2ETest : E2ETest(){
 
 		// When
 		val response: ResponseEntity<PlayerResponse>? = HttpHelper.sendGetRequest(
-			"${applicationUrl()}/api/player/${player.id}"
+			"${applicationUrl()}/players/${player.id}"
 		)
 
 		// Then
@@ -55,7 +55,7 @@ class FindPlayerE2ETest : E2ETest(){
 
 		// When
 		val response: ResponseEntity<String>? = HttpHelper.sendGetRequest(
-			"${applicationUrl()}/api/player/${player.id}"
+			"${applicationUrl()}/players/${player.id}"
 		)
 
 		// Then
@@ -77,7 +77,7 @@ class FindPlayerE2ETest : E2ETest(){
 
 		// When
 		val response: ResponseEntity<PlayerResponse>? = HttpHelper.sendGetRequest(
-			"${applicationUrl()}/api/player/name/${player.name}"
+			"${applicationUrl()}/players/name/${player.name}"
 		)
 
 		// Then
@@ -99,7 +99,7 @@ class FindPlayerE2ETest : E2ETest(){
 
 		// When
 		val response: ResponseEntity<String>? = HttpHelper.sendGetRequest(
-			"${applicationUrl()}/api/player/name/${player.name}"
+			"${applicationUrl()}/players/name/${player.name}"
 		)
 
 		// Then

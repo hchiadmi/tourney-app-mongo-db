@@ -32,7 +32,7 @@ class DeletePlayersE2ETest : E2ETest(){
 
 		// When
 		val response: ResponseEntity<String>? = HttpHelper.sendDeleteRequest(
-			"${applicationUrl()}/api/player"
+			"${applicationUrl()}/players"
 		)
 
 		// Then
