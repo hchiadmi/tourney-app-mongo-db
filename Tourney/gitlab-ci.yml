@@ -1,0 +1,55 @@
+variables:
+  GRADLE_USER_HOME: ${CI_PROJECT_DIR}/.gradle
+
+default:
+  image: gradle:jdk17
+
+stages:
+  - test
+  - build_jar
+  - build_image
+
+test:
+  stage: test
+  services:
+    - mongo:latest
+  script:
+    - gradle test
+  artifacts:
+    when: always
+    reports:
+      junit: build/test-results/test/**/TEST-*.xml
+
+build_jar:
+  stage: build_jar
+  script:
+    - gradle bootJar
+  artifacts:
+    paths:
+      - build/libs/*.jar
+  needs:
+    - test
+
+build_image:
+  stage: build_image
+  interruptible: true
+  image:
+    name: gcr.io/kaniko-project/executor:debug-perf
+    entrypoint: [ '' ]
+  variables:
+    IMAGE_NAME: tourney-api
+  before_script:
+    - mkdir -p /kaniko/.docker
+    - cp $KANIKO_AUTH_CONFIG_FILE /kaniko/.docker/config.json
+  script:
+    - /kaniko/executor
+      --single-snapshot
+      --use-new-run
+      --context $CI_PROJECT_DIR
+      --dockerfile .infra/docker/Dockerfile
+      --destination $CI_REGISTRY_IMAGE/$IMAGE_NAME:$CI_COMMIT_SHORT_SHA
+      --destination $CI_REGISTRY_IMAGE/$IMAGE_NAME:latest
+  dependencies:
+    - build_jar
+  needs:
+    - build_jar
